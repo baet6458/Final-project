@@ -66,27 +66,43 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="test 1"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@color/Green"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="test 2"
+        android:textColor="@android:color/white"
+        android:background="@color/red"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:text="test 1"
+        android:layout_weight="1"
+        android:background="@color/Green"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="test 4"
+        android:background="@color/red"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:text="test 5"
+        android:layout_weight="1"
+        android:background="@color/Green"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="test 6"
+        android:background="@color/red"
+        android:textColor="@android:color/white"/>
 
 
 
