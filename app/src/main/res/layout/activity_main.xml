@@ -63,45 +63,51 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/Machine0"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="test 1"
+        android:text="Washer 1"
         android:layout_weight="1"
         android:background="@color/Green"
         android:textColor="@android:color/white"/>
     <TextView
+        android:id="@+id/Machine1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="test 2"
+        android:text="Washer 2"
         android:textColor="@android:color/white"
-        android:background="@color/red"/>
+        android:background="@color/Green"/>
     <TextView
+        android:id="@+id/Machine2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="test 1"
+        android:text="washer 3"
         android:layout_weight="1"
         android:background="@color/Green"/>
     <TextView
+        android:id="@+id/Machine3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="test 4"
-        android:background="@color/red"
+        android:text="Dryer 1"
+        android:background="@color/Green"
         android:textColor="@android:color/white"/>
     <TextView
+        android:id="@+id/Machine4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="test 5"
+        android:text="Dryer 2"
         android:layout_weight="1"
         android:background="@color/Green"
         android:textColor="@android:color/white"/>
     <TextView
+        android:id="@+id/Machine5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="test 6"
-        android:background="@color/red"
+        android:text="Dryer 3"
+        android:background="@color/Green"
         android:textColor="@android:color/white"/>
 
 
