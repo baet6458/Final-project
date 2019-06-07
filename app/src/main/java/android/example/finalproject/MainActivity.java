@@ -1,7 +1,9 @@
 package android.example.finalproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Member> machines =new ArrayList<Member>();
     int washerNum=3;
     int dryerNum=3;
+    public final static String machineInfo="com.mycompany.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,5 +76,20 @@ public class MainActivity extends AppCompatActivity {
         dryers.setText(Integer.toString(dryerNum));
 
 
+    }
+
+    public void loadWasher1(View view) {
+        Intent intent= new Intent(MainActivity.this,ClickScreen.class);
+        String message ="";
+        for (Member x:machines) {
+            if(x.getMachineNumber()==1)
+                message=x.getInfo();
+
+        }
+        if(message==" "){
+            message="1";
+        }
+        intent.putExtra(machineInfo,message);
+        startActivity(intent);
     }
 }

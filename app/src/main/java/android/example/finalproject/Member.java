@@ -31,4 +31,8 @@ public class Member {
         return machineNumber;
     }
 
+    public String getInfo(){
+        return machineNumber+" "+mBondNumber+" "+mEmail+" ";
+    }
+
 }

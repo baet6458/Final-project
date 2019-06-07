@@ -69,7 +69,8 @@
         android:text="Washer 1"
         android:layout_weight="1"
         android:background="@color/Green"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:onClick="loadWasher1"/>
     <TextView
         android:id="@+id/Machine1"
         android:layout_width="match_parent"
