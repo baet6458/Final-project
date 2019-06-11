@@ -1,6 +1,7 @@
 package android.example.finalproject;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.style.TtsSpan;
@@ -41,23 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         TunnelConnector.startConnection(this);
-        TunnelConnector.sendServerMessage("S");
-
-        /*
-        if (!trial.isEmpty() && trial.get(0).toLowerCase().equals("empty")) {
-            // if the members list is empty
-            findViewById(R.id.Machine0).setBackgroundColor(getResources().getColor(R.color.red));
-        } else {
-            for (String x : trial) {
-                String[] temp = x.split(",");
-                Log.d("CREATION", "we are checking here");
-                machines.add(new Member(Integer.parseInt(temp[0]), temp[1], temp[2],
-                        Integer.parseInt(temp[3]), temp[4]));
-            }
-        }
-
-        */
-        //go through the loop and set colors of backgrounds
+        TunnelConnector.sendServerMessage("s");
         int id;
 
         for (int i = 0; i < machines.size(); i++) {
@@ -100,7 +85,11 @@ public class MainActivity extends AppCompatActivity {
         washNum.setText(Integer.toString(washerNum));
         TextView dryers = findViewById(R.id.dryerNumber);
         dryers.setText(Integer.toString(dryerNum));
+
+
+
     }
+
 
     public void loadMachine(View view) {
         Intent intent = new Intent(MainActivity.this, ClickScreen.class);
@@ -126,7 +115,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public synchronized void updateMachineStates(String updateStr) {
-        System.out.println("I have a string"+ updateStr);
+
+        System.out.println("This is the string "+updateStr);
+        if (updateStr.equals("")) {
+            String[] temp = updateStr.split("\n");
+            for(String x: temp){
+                String[] y =x.split(",");
+                machines.add(new Member(1,y[1],y[2],Integer.parseInt(y[3]),y[4]));
+            }
+
+        }
+
+
+
     }
 
 }

@@ -31,15 +31,13 @@ public class TunnelConnector {
     }
 
     public static void sendServerMessage(String message)  {
-        clientThread.enqueueMessage(message);
+        ChatThread.enqueueMessage(message);
     }
 
     private static class clientThread extends Thread {
         private volatile ArrayList<String> response = new ArrayList<String>();
         private volatile MainActivity main;
         private static volatile Socket connectionPoint;
-        private static volatile ArrayList<String> messageQueue = new ArrayList();
-        private static volatile PrintStream outStream;
 
         public clientThread(MainActivity item) {
             main = item;
@@ -48,16 +46,15 @@ public class TunnelConnector {
         @Override
         public void run() {
             try {
-                String servername = "10.0.48.47";
-                connectionPoint = new Socket(servername, 12345);
-                outStream = new PrintStream(connectionPoint.getOutputStream());
+                String servername = "3.15.19.93";
+                connectionPoint = new Socket(servername, 12000);
+                new ChatThread().start();
                 Scanner scanner = new Scanner(connectionPoint.getInputStream());
-                System.out.println("Hello world");
                 while (scanner.hasNextLine()) {
-                    System.out.println("we are in the statement");
                     String incomingMessage = scanner.nextLine();
-                    clearMessageQueue();
+                    main.updateMachineStates(incomingMessage);
                 }
+                System.exit(-1);
 
             } catch (UnknownHostException e) {
                 e.printStackTrace();
@@ -68,9 +65,29 @@ public class TunnelConnector {
 
         }
 
+        public ArrayList<String> getResponse() {
+            return response;
+        }
+    }
+    private static class ChatThread extends Thread {
+        private static volatile ArrayList<String> messageQueue = new ArrayList();
+        private static volatile PrintStream outStream;
+
+        @Override
+        public void run() {
+            try {
+                outStream = new PrintStream(clientThread.connectionPoint.getOutputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            while (true) {
+                clearMessageQueue();
+            }
+        }
+
         private static synchronized void clearMessageQueue() {
             ArrayList<String> queue = getMessageQueue();
-            System.out.println("Queue is length "+ queue.size());
             for (String message : queue) {
                 outStream.println(message);
             }
@@ -83,10 +100,6 @@ public class TunnelConnector {
 
         private static synchronized ArrayList<String> getMessageQueue() {
             return messageQueue;
-        }
-
-        public ArrayList<String> getResponse() {
-            return response;
         }
     }
 }
