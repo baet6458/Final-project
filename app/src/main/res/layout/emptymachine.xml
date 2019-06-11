@@ -50,6 +50,7 @@
         android:textColor="@android:color/white"
         android:background="@color/Argent"
         android:layout_marginTop="50dp"
+        android:onClick="submitNewUser"
         />
 
 </RelativeLayout>

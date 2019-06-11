@@ -3,6 +3,7 @@ package android.example.finalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Scanner;
@@ -27,5 +28,11 @@ public class EmptyMachine extends Activity {
         }
         TextView displayedNum = findViewById(R.id.machineNumber);
         displayedNum.setText(message);
+    }
+
+
+    //need to make this work
+    public void submitNewUser(View view) {
+
     }
 }

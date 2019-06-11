@@ -12,6 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class ClickScreen extends Activity {
@@ -20,6 +26,7 @@ public class ClickScreen extends Activity {
 
     private String mEmail;
     private String firstName;
+    private int machinceNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +36,15 @@ public class ClickScreen extends Activity {
         String message = intent.getStringExtra(MainActivity.machineInfo);
         Scanner messageScan = new Scanner(message);
         String num="";
-        int value = Integer.parseInt(messageScan.next());
-        if(value>=3){
+        machinceNum = Integer.parseInt(messageScan.next());
+        if(machinceNum>=3){
             TextView displayName= findViewById(R.id.machine);
             displayName.setText("Dryer:");
-            num = String.valueOf(value-2);
+            num = String.valueOf(machinceNum-2);
         }
         else{
-            value++;
-            num=String.valueOf(value);
+            machinceNum++;
+            num=String.valueOf(machinceNum);
         }
         TextView displayedNum = findViewById(R.id.machineNumber);
         displayedNum.setText(num);
@@ -73,9 +80,8 @@ public class ClickScreen extends Activity {
                 .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "They clicked yes", Toast.LENGTH_SHORT);
-                        toast.show();
+                            TunnelConnector.sendServerMessage("r");
+                            TunnelConnector.sendServerMessage(String.valueOf(machinceNum));
                     }
                 });
         AlertDialog dialog = resetCheck.create();
