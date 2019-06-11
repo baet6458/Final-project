@@ -62,7 +62,7 @@
 
     </RelativeLayout>
 
-    <TextView
+    <Button
         android:id="@+id/Machine0"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -70,46 +70,65 @@
         android:layout_weight="1"
         android:background="@color/Green"
         android:textColor="@android:color/white"
-        android:onClick="loadWasher1"/>
-    <TextView
+        android:onClick="loadMachine"
+        android:tag="0"/>
+
+    <Button
         android:id="@+id/Machine1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Washer 2"
         android:textColor="@android:color/white"
-        android:background="@color/Green"/>
-    <TextView
+        android:background="@color/Green"
+        android:onClick="loadMachine"
+        android:tag="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <Button
         android:id="@+id/Machine2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="washer 3"
         android:layout_weight="1"
-        android:background="@color/Green"/>
-    <TextView
+        android:background="@color/Green"
+        android:textColor="@android:color/white"
+        android:onClick="loadMachine"
+        android:tag="2"/>
+    <Button
         android:id="@+id/Machine3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Dryer 1"
         android:background="@color/Green"
-        android:textColor="@android:color/white"/>
-    <TextView
+        android:textColor="@android:color/white"
+        android:onClick="loadMachine"
+        android:tag="3"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <Button
         android:id="@+id/Machine4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="Dryer 2"
         android:layout_weight="1"
         android:background="@color/Green"
-        android:textColor="@android:color/white"/>
-    <TextView
+        android:textColor="@android:color/white"
+        android:onClick="loadMachine"
+        android:tag="4"/>
+    <Button
         android:id="@+id/Machine5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Dryer 3"
         android:background="@color/Green"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:onClick="loadMachine"
+        android:tag="5"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
 
 

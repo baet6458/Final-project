@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,30 +22,38 @@ public class ClickScreen extends Activity {
     private String firstName;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clickscreen);
         Intent intent = getIntent();
-        String message =intent.getStringExtra(MainActivity.machineInfo);
+        String message = intent.getStringExtra(MainActivity.machineInfo);
         Scanner messageScan = new Scanner(message);
+        String num="";
+        int value = Integer.parseInt(messageScan.next());
+        if(value>=3){
+            TextView displayName= findViewById(R.id.machine);
+            displayName.setText("Dryer:");
+            num = String.valueOf(value-2);
+        }
+        else{
+            value++;
+            num=String.valueOf(value);
+        }
+        TextView displayedNum = findViewById(R.id.machineNumber);
+        displayedNum.setText(num);
 
+        TextView displayName = findViewById(R.id.name);
 
-        TextView displayedNum=findViewById(R.id.machineNumber);
-        displayedNum.setText(messageScan.next());
+        firstName = messageScan.next();
 
-        TextView displayName =findViewById(R.id.name);
+        displayName.setText(getString(R.string.userName) + firstName + " " + messageScan.next());
 
-        firstName=messageScan.next();
+        TextView displayBond = findViewById(R.id.bondNumber);
+        displayBond.setText(getString(R.string.bondNumber) + messageScan.next());
 
-        displayName.setText(getString(R.string.userName)+firstName+" "+messageScan.next());
+        mphoneNumber = messageScan.next();
 
-        TextView displayBond =findViewById(R.id.bondNumber);
-        displayBond.setText(getString(R.string.bondNumber)+messageScan.next());
-
-        mphoneNumber=messageScan.next();
-
-        mEmail=messageScan.next();
-
+        mEmail = messageScan.next();
 
 
     }
@@ -65,7 +74,7 @@ public class ClickScreen extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast toast = Toast.makeText(getApplicationContext(),
-                                "They clicked yes",Toast.LENGTH_SHORT);
+                                "They clicked yes", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 });
@@ -74,23 +83,24 @@ public class ClickScreen extends Activity {
     }
 
     //have an implicit intent to text user
-    public void textUser(View view){
+    public void textUser(View view) {
         // Create the text message with a string
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
         sendIntent.setData(Uri.parse("sms:"));
-        sendIntent.putExtra("address",mphoneNumber);
-        sendIntent.putExtra("sms_body",firstName+", please move your clothes.");
-
+        sendIntent.putExtra("address", mphoneNumber);
+        sendIntent.putExtra("sms_body", firstName + ", please move your clothes.");
+        //start the intent
         startActivity(sendIntent);
     }
 
-    public void emailUser(View view){
+    public void emailUser(View view) {
+        String[] address = {mEmail};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("text/html");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL,mEmail);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Laundry system");
-        emailIntent.putExtra(Intent.EXTRA_TEXT,firstName+", please move your clothes.");
-
+        emailIntent.setType("*/*");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, address);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Laundry system");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, firstName + ", please move your clothes.");
+        //Start the intent
         startActivity(emailIntent);
     }
 

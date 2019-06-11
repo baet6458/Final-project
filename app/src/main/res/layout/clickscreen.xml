@@ -26,14 +26,6 @@
         android:textColor="@android:color/black"
 
         />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:text="Enter bond #:"
-        android:textSize="36sp"/>
-
     <TextView
         android:id="@+id/name"
         android:layout_below="@id/machine"
