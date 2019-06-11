@@ -6,14 +6,16 @@ public class Member {
     private int machineNumber;
     private String mName;
     private String mEmail;
+    private String mNumber;
 
 
 
-    public  Member(int bondNumber,String name, String email,int machineNumber){
+    public  Member(int bondNumber,String name, String email,int machineNumber,String number){
         mBondNumber=bondNumber;
         mName=name;
         mEmail=email;
         this.machineNumber=machineNumber;
+        mNumber=number;
     }
 
     public int getBondNumber(){
@@ -32,7 +34,7 @@ public class Member {
     }
 
     public String getInfo(){
-        return machineNumber+" "+mBondNumber+" "+mEmail+" ";
+        return machineNumber+" "+mName+" "+mBondNumber+" "+mNumber+" "+mEmail;
     }
 
 }

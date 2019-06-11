@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //replace with pulling data from the socket
-        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",0));
-        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",1));
-        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",3));
-        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",4));
+        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",0,"2487209551"));
+        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",1,"9999999999"));
+        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",3,"9999999999"));
+        machines.add(new Member(1302,"Elijsha Baetiong","Baet6458@kettering.edu",4,"9999999999"));
 
         //go through the loop and set colors of backgrounds
         int id=0;
@@ -74,20 +74,15 @@ public class MainActivity extends AppCompatActivity {
         washNum.setText( Integer.toString(washerNum));
         TextView dryers =findViewById(R.id.dryerNumber);
         dryers.setText(Integer.toString(dryerNum));
-
-
     }
 
     public void loadWasher1(View view) {
         Intent intent= new Intent(MainActivity.this,ClickScreen.class);
         String message ="";
         for (Member x:machines) {
-            if(x.getMachineNumber()==1)
+            if(x.getMachineNumber()==0)
                 message=x.getInfo();
 
-        }
-        if(message==" "){
-            message="1";
         }
         intent.putExtra(machineInfo,message);
         startActivity(intent);

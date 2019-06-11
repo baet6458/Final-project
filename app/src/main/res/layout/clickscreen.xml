@@ -26,6 +26,34 @@
         android:textColor="@android:color/black"
 
         />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="Enter bond #:"
+        android:textSize="36sp"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_below="@id/machine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/userName"
+        android:textSize="36sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/bondNumber"
+        android:layout_below="@id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bondNumber"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:layout_marginTop="30dp"/>
+
     <Button
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
@@ -37,8 +65,10 @@
         android:padding="10dp"
         android:textColor="@android:color/white"
         android:layout_marginRight="5dp"
+        android:onClick="emailUser"
         />
     <Button
+        android:id="@+id/textButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/clearButton"
@@ -51,7 +81,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="5dp"
-
+        android:onClick="textUser"
         />
 
     <Button
@@ -67,6 +97,8 @@
         android:textSize="30dp"
         android:textColor="@android:color/white"
         android:background="@color/Argent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:onClick="clearScreen"
+        />
 
 </RelativeLayout>
