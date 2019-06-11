@@ -80,8 +80,7 @@ public class ClickScreen extends Activity {
                 .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                            TunnelConnector.sendServerMessage("r");
-                            TunnelConnector.sendServerMessage(String.valueOf(machinceNum));
+
                     }
                 });
         AlertDialog dialog = resetCheck.create();

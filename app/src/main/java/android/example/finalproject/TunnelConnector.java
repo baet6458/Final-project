@@ -1,11 +1,19 @@
 package android.example.finalproject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Scanner;
 
 public class TunnelConnector {
     private static volatile MainActivity mainThread = null;
@@ -22,17 +30,16 @@ public class TunnelConnector {
         socketThread.start();
     }
 
-    //Write to the sockets output stream
-    public static void sendServerMessage(String message) {
-
-
-
+    public static void sendServerMessage(String message)  {
+        clientThread.enqueueMessage(message);
     }
 
     private static class clientThread extends Thread {
         private volatile ArrayList<String> response = new ArrayList<String>();
         private volatile MainActivity main;
-        private volatile Socket connectionPoint;
+        private static volatile Socket connectionPoint;
+        private static volatile ArrayList<String> messageQueue = new ArrayList();
+        private static volatile PrintStream outStream;
 
         public clientThread(MainActivity item) {
             main = item;
@@ -41,16 +48,17 @@ public class TunnelConnector {
         @Override
         public void run() {
             try {
-                String servername = "3.15.19.93";
-                connectionPoint = new Socket(servername, 12000);
-                BufferedReader br = new BufferedReader(new InputStreamReader(connectionPoint.getInputStream()));
-                String temp = br.readLine();
-                while ((!temp.equals(""))) {
-                    response.add(temp);
-                    TunnelConnector.mainThread.updateMachineStates(temp);
-                    temp = br.readLine();
+                String servername = "10.0.48.47";
+                connectionPoint = new Socket(servername, 12345);
+                outStream = new PrintStream(connectionPoint.getOutputStream());
+                Scanner scanner = new Scanner(connectionPoint.getInputStream());
+                System.out.println("Hello world");
+                while (scanner.hasNextLine()) {
+                    System.out.println("we are in the statement");
+                    String incomingMessage = scanner.nextLine();
+                    clearMessageQueue();
                 }
-                connectionPoint.close();
+
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -60,7 +68,22 @@ public class TunnelConnector {
 
         }
 
+        private static synchronized void clearMessageQueue() {
+            ArrayList<String> queue = getMessageQueue();
+            System.out.println("Queue is length "+ queue.size());
+            for (String message : queue) {
+                outStream.println(message);
+            }
+            getMessageQueue().clear();
+        }
 
+        private static synchronized void enqueueMessage(String message) {
+            getMessageQueue().add(message);
+        }
+
+        private static synchronized ArrayList<String> getMessageQueue() {
+            return messageQueue;
+        }
 
         public ArrayList<String> getResponse() {
             return response;

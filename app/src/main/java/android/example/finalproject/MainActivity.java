@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         TunnelConnector.startConnection(this);
+        TunnelConnector.sendServerMessage("S");
+
         /*
         if (!trial.isEmpty() && trial.get(0).toLowerCase().equals("empty")) {
             // if the members list is empty
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public synchronized void updateMachineStates(String updateStr) {
-
+        System.out.println("I have a string"+ updateStr);
     }
 
 }
