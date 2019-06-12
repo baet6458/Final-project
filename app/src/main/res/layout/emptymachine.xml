@@ -28,9 +28,10 @@
         />
 
     <EditText
+        android:id="@+id/bondText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please enter your bond #"
+        android:hint="Please enter bond #"
         android:textSize="24dp"
         android:layout_below="@id/machine"
         android:layout_marginTop="100dp"/>

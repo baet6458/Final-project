@@ -37,14 +37,15 @@ public class ClickScreen extends Activity {
         Scanner messageScan = new Scanner(message);
         String num="";
         machinceNum = Integer.parseInt(messageScan.next());
+        System.out.println(machinceNum);
         if(machinceNum>=3){
             TextView displayName= findViewById(R.id.machine);
             displayName.setText("Dryer:");
             num = String.valueOf(machinceNum-2);
         }
         else{
-            machinceNum++;
-            num=String.valueOf(machinceNum);
+            int extra=machinceNum+1;
+            num=String.valueOf(extra);
         }
         TextView displayedNum = findViewById(R.id.machineNumber);
         displayedNum.setText(num);
@@ -80,11 +81,15 @@ public class ClickScreen extends Activity {
                 .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        System.out.println(machinceNum);
+                        TunnelConnector.sendServerMessage("r,"+(machinceNum)+",");
+                        // go back to main menu
+                        finish();
                     }
                 });
         AlertDialog dialog = resetCheck.create();
         dialog.show();
+
     }
 
     //have an implicit intent to text user
@@ -108,6 +113,8 @@ public class ClickScreen extends Activity {
         //Start the intent
         startActivity(emailIntent);
     }
+
+
 
 
 }

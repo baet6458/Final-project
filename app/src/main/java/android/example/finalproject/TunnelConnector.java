@@ -30,6 +30,14 @@ public class TunnelConnector {
         socketThread.start();
     }
 
+    public static void endConnection(){
+        try {
+            clientThread.connectionPoint.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void sendServerMessage(String message)  {
         ChatThread.enqueueMessage(message);
     }
@@ -89,7 +97,7 @@ public class TunnelConnector {
         private static synchronized void clearMessageQueue() {
             ArrayList<String> queue = getMessageQueue();
             for (String message : queue) {
-                outStream.println(message);
+                outStream.print(message);
             }
             getMessageQueue().clear();
         }
